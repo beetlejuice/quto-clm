@@ -3,6 +3,5 @@ When(/^I navigate to $screen screen$/) do |screen_name|
 end
 
 When(/^I fill $screen screen with data:$/) do |screen, table|
-
-  table.hashes.first
+  pending
 end

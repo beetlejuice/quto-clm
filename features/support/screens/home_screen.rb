@@ -5,41 +5,41 @@ class HomeScreen < BaseScreen
 end
 
 class MRHomeScreen < HomeScreen
-  button('calendar_button', :uiautomation => '')
-  button('visits_button', :uiautomation => '')
-  button('contacts_button', :uiautomation => '')
-  button('organizations_button', :uiautomation => '')
-  button('events_button', :uiautomation => '')
-  button('messages_button', :uiautomation => '')
-  button('presentations_button', :uiautomation => '')
-  button('library_button', :uiautomation => '')
+  button('calendar_button', :uiautomation => '.buttons()[2]')
+  button('visits_button', :uiautomation => '.buttons()[3]')
+  button('contacts_button', :uiautomation => '.buttons()[4]')
+  button('organizations_button', :uiautomation => '.buttons()[5]')
+  button('events_button', :uiautomation => '.buttons()[6]')
+  button('messages_button', :uiautomation => '.buttons()[7]')
+  button('presentations_button', :uiautomation => '.buttons()[8]')
+  button('library_button', :uiautomation => '.buttons()[9]')
 end
 
 class RMHomeScreen < HomeScreen
-  button('calendar_button', :uiautomation => '')
-  button('contacts_button', :uiautomation => '')
-  button('organizations_button', :uiautomation => '')
-  button('employees_button', :uiautomation => '')
-  button('events_button', :uiautomation => '')
-  button('messages_button', :uiautomation => '')
-  button('presentations_button', :uiautomation => '')
-  button('library_button', :uiautomation => '')
+  button('calendar_button', :uiautomation => '.buttons()[2]')
+  button('contacts_button', :uiautomation => '.buttons()[3]')
+  button('organizations_button', :uiautomation => '.buttons()[4]')
+  button('employees_button', :uiautomation => '.buttons()[5]')
+  button('events_button', :uiautomation => '.buttons()[6]')
+  button('messages_button', :uiautomation => '.buttons()[7]')
+  button('presentations_button', :uiautomation => '.buttons()[8]')
+  button('library_button', :uiautomation => '.buttons()[9]')
 end
 
 class TKAMHomeScreen < HomeScreen
-  button('visits_button', :uiautomation => '')
-  button('contacts_button', :uiautomation => '')
-  button('organizations_button', :uiautomation => '')
-  button('messages_button', :uiautomation => '')
-  button('presentations_button', :uiautomation => '')
-  button('library_button', :uiautomation => '')
+  button('visits_button', :uiautomation => '.buttons()[2]')
+  button('contacts_button', :uiautomation => '.buttons()[3]')
+  button('organizations_button', :uiautomation => '.buttons()[4]')
+  button('messages_button', :uiautomation => '.buttons()[5]')
+  button('presentations_button', :uiautomation => '.buttons()[6]')
+  button('library_button', :uiautomation => '.buttons()[7]')
 end
 
 class CKAMHomeScreen < HomeScreen
-  button('calendar_button', :uiautomation => '')
-  button('contacts_button', :uiautomation => '')
-  button('organizations_button', :uiautomation => '')
-  button('messages_button', :uiautomation => '')
-  button('presentations_button', :uiautomation => '')
-  button('library_button', :uiautomation => '')
+  button('calendar_button', :uiautomation => '.buttons()[2]')
+  button('contacts_button', :uiautomation => '.buttons()[3]')
+  button('organizations_button', :uiautomation => '.buttons()[4]')
+  button('messages_button', :uiautomation => '.buttons()[5]')
+  button('presentations_button', :uiautomation => '.buttons()[6]')
+  button('library_button', :uiautomation => '.buttons()[7]')
 end

@@ -1,5 +1,7 @@
 require 'selenium-webdriver'
 
+UIAUTO_LOCATOR_PREFIX = 'UIATarget.localTarget().frontMostApp().mainWindow()'
+
 module Quto
   module Drivers
     class BaseDriver
@@ -11,7 +13,7 @@ module Quto
 
       def find(locator)
         how = locator.keys[0].to_sym
-        what = locator[how]
+        what = prepare_locator(how, locator[how])
 
         begin
           appium.find_element(how, what)
@@ -90,6 +92,10 @@ module Quto
       def initialize_driver
         @appium_driver = Appium::Driver.new(desired_caps)
         @appium_driver.start_driver
+      end
+
+      def prepare_locator locator_type, locator_string
+        locator_type == :uiauto ? (UIAUTO_LOCATOR_PREFIX + locator_string) : locator_string
       end
     end
   end
