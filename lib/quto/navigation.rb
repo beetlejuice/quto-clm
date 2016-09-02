@@ -2,7 +2,7 @@ require 'page_navigation'
 
 module Quto
   module Navigation
-    # include PageNavigation
+    include PageNavigation
 
     def on(screen_class, timeout = 10)
       # screen = screen_class.new($current_profile)

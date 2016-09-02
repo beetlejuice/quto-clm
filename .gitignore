@@ -3,6 +3,8 @@ config.yml
 Backlog
 custom_data/
 tmp/
+theories.rb
+TODO
 
 # RubyMine
 .idea/

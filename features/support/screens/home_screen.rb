@@ -2,6 +2,11 @@ require 'quto'
 
 class HomeScreen < BaseScreen
   include Quto
+
+  def navigate_to_chapter chapter
+    click_method = chapter.downcase + '_button_click'
+    self.send(click_method)
+  end
 end
 
 class MRHomeScreen < HomeScreen

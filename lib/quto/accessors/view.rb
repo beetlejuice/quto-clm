@@ -1,6 +1,8 @@
 module Quto
   module Accessors
     class View
+      include DynamicLocators
+
       def initialize(locator)
         @locator = locator
       end

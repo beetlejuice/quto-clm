@@ -1,14 +1,14 @@
 require 'quto/accessors/accessors'
 require 'quto/accessors/view'
-require 'quto/accessors/table'
-require 'quto/dynamic_locators'
+# require 'quto/accessors/table'
+# require 'quto/accessors/table_cell'
+# require 'quto/dynamic_locators'
 require 'quto/navigation'
 require 'quto/helper'
 require 'quto/waiter'
 require 'quto/base_screen'
 
 module Quto
-  include DynamicLocators
 
   def self.included(cls)
     cls.extend(Quto::Accessors)
@@ -19,7 +19,7 @@ module Quto
     driver.find(locator)
   end
 
-  def finds(locator)
+  def find_all(locator)
     driver.find_all(locator)
   end
 
