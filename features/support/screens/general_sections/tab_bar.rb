@@ -1,6 +1,4 @@
-class TabbarSection
-  include Quto
-
+class TabBar < BaseSection
   button('calendar_button', :name => 'Календарь')
   button('visits_button', :name => 'Визиты')
   button('contacts_button', :name => 'Контакты')

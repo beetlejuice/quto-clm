@@ -1,6 +1,7 @@
 Quto::Navigation.routes = {
     :default => [HomeScreen],
-    :to_contacts => [[HomeScreen, :contact_button_click], [ContactsScreen]],
+    # :to_contacts => [[HomeScreen, :contact_button_click], [ContactsScreen]],
+    :to_contacts => [[HomeScreen, :contacts_button_click]],
     :to_organizations => [[HomeScreen, :organizations_button_click], [OrganizationsScreen]],
     :to_visits => [[HomeScreen, :visits_button_click], [VisitsScreen]],
     :to_calendar => [[HomeScreen, :calendar_button_click], [CalendarScreen]],

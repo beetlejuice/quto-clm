@@ -3,6 +3,15 @@ Feature: Create visit
   As a MR user
   I want to be able to create a visit
 
+  Background:
+    Given I open Contacts chapter
+
   Scenario: Create pharmacy visit
-    Given I am on $screen screen
-    When I
+    When I select "Все фармацевты" filter
+    When I create a visit to any contact
+    Then I should see PharmacyVisit screen
+
+  Scenario: Create medical visit
+    When I select "Все врачи" filter
+    When I create a visit to any contact
+    Then I should see MedicalVisit screen

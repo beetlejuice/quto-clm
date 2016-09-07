@@ -1,36 +1,33 @@
 require_relative 'organization_type_popover'
-require_relative 'tab_bar'
+require_relative 'general_sections/tab_bar'
 
 # Permanent elements
+ORGANIZATIONS_TABLE_LOCATOR = {:uiautomation => ".tableViews()[0]"}
 ORGANIZATIONS_FILTER_BUTTON_LOCATOR = {:uiautomation => ".navigationBar().buttons().firstWithPredicate(\"name CONTAINS '▼'\")"}
-TITLE_LOCATOR = {:uiautomation => ".navigationBar().staticTexts()['Организации']"}
 MENU_BUTTON_LOCATOR = {:uiautomation => ".navigationBar().buttons()['Меню']"}
-ORGANIZATIONS_LIST_LOCATOR = {:uiautomation => ".tableViews()[0]"}
 
 # Appearing elements
 FILTER_LIST_LOCATOR = ""
 MAIN_MENU_LOCATOR = ""
 
-class OrganizationsScreen
-  include Quto
-
+class OrganizationsScreen < BaseScreen
   button('menu_button', MENU_BUTTON_LOCATOR)
   button('organizations_filter_button', ORGANIZATIONS_FILTER_BUTTON_LOCATOR)
-  table('organizations_list', ORGANIZATIONS_LIST_LOCATOR)
-  screen_section('organization_type_popover', OrganizationTypePopover) # this looks awful
+  table('organizations_table', ORGANIZATIONS_TABLE_LOCATOR)
+  screen_section('organization_type_popover', OrganizationTypePopover) # TODO: separate screen section here looks awful
   screen_section('tab_bar', TabBar)
+
+  def title
+    'Организации'
+  end
 
   def list_pharmacies
     select_filter 'Все аптеки'
   end
 
-  def start_creating_organization type
+  def start_creating_organization type # TODO: refactor this method - ridiculous name
     pick_menu_option('Добавить организацию')
     organization_type_popover.select_organization_type type
-  end
-
-  def active?
-    enabled_after_wait?(label_element(TITLE_LOCATOR))
   end
 
   private

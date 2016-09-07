@@ -4,8 +4,7 @@ module Quto
   module Navigation
     include PageNavigation
 
-    def on(screen_class, timeout = 10)
-      # screen = screen_class.new($current_profile)
+    def on(screen_class, timeout = 10) # TODO: consider changing this name
       screen = screen_class.create_for_profile($current_profile)
       wait = 0
       until wait == timeout do

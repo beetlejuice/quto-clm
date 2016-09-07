@@ -95,7 +95,7 @@ module Quto
       end
 
       def prepare_locator locator_type, locator_string
-        locator_type == :uiauto ? (UIAUTO_LOCATOR_PREFIX + locator_string) : locator_string
+        locator_type == :uiautomation ? (UIAUTO_LOCATOR_PREFIX + locator_string) : locator_string
       end
     end
   end

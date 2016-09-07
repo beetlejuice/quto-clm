@@ -7,6 +7,7 @@ require 'quto/navigation'
 require 'quto/helper'
 require 'quto/waiter'
 require 'quto/base_screen'
+require 'quto/base_section'
 
 module Quto
 
