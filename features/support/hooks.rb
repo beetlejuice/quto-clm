@@ -1,8 +1,9 @@
 Before do |scenario|
 
-  tags = scenario.feature.source_tag_names
+  tags = scenario.source_tag_names
 
-  $current_profile = nil
+  # $current_profile = nil
+  $current_profile = 'mr'
   feature_profile = profile_from_tags(tags)
 
   is_profile_changed = $current_profile != feature_profile
@@ -18,8 +19,8 @@ end
 
 def profile_from_tags(tags)
   # TODO: extract profile names to constants (ALL_PROFILES and DEFAULT_PROFILE)
-  profiles = %w(MR RM TKAM CKAM)
-  (tags & profiles).first || 'MR'
+  profiles = %w(mr rm tkam ckam)
+  (tags & profiles).first || 'mr'
 end
 
 def prepare_driver(is_clean)
@@ -34,5 +35,5 @@ end
 
 def login_with_profile(profile)
   # TODO: deal with double quotes added during string interpolation
-  steps %{When I login with #{profile} user}
+  # steps %{When I login with #{profile} user}
 end

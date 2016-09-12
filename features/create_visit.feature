@@ -1,3 +1,4 @@
+@for_test @mr
 Feature: Create visit
   In order to perform activities
   As a MR user
@@ -11,7 +12,7 @@ Feature: Create visit
     When I create a visit to any contact
     Then I should see PharmacyVisit screen
 
-  Scenario: Create medical visit
-    When I select "Все врачи" filter
-    When I create a visit to any contact
-    Then I should see MedicalVisit screen
+#  Scenario: Create medical visit
+#    When I select "Все врачи" filter
+#    When I create a visit to any contact
+#    Then I should see "MedicalVisit" screen

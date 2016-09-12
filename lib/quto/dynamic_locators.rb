@@ -1,34 +1,26 @@
-require 'quto/accessors/view'
-require 'quto/accessors/table'
-require 'quto/accessors/table_cell'
+# require 'quto/accessors/view'
+# require 'quto/accessors/table'
+# require 'quto/accessors/table_cell'
 
-BASIC_ELEMENTS = [:label, :text_field, :button, :image]
+ELEMENTS = [:label, :text_field, :button, :image, :table, :table_cell]
 
 module Quto
   module DynamicLocators
 
-    def included(cls)
-      self.class.generate_locators(cls)
+    def self.included(cls)
+      generate_locators(cls)
     end
-
-    private
 
     def self.generate_locators(target)
-
-    end
-
-    def self.generate_basic_locators(target)
-      BASIC_ELEMENTS.each do |tag|
-        generate_locator target, tag
+      ELEMENTS.each do |tag|
+        generate_locator(target, tag)
       end
-
-      generate_locator target, 'Table'
-      generate_locator target, 'TableCell'
     end
 
     def self.generate_locator(target, accessor_name)
-      target.send(:define_method, "#{tag.to_s}_element)") do |locator|
-        Quto::Accessors.const_get(accessor_name).new
+      target.send(:define_method, "#{accessor_name.to_s}_element") do |locator|
+        Quto::Accessors::View.new(locator) # TODO: Add case for Table and TableCell
+        # self.class.send(accessor_name.to_sym, 'dynamic', locator)
       end
     end
   end

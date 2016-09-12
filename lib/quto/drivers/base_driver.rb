@@ -1,10 +1,9 @@
 require 'selenium-webdriver'
 
-UIAUTO_LOCATOR_PREFIX = 'UIATarget.localTarget().frontMostApp().mainWindow()'
-
 module Quto
   module Drivers
     class BaseDriver
+      UIAUTO_LOCATOR_PREFIX = 'UIATarget.localTarget().frontMostApp().mainWindow()'
 
       # TODO: why do I need this?
       attr_reader :config
@@ -25,7 +24,7 @@ module Quto
       # TODO: get rid of copy-paste code
       def find_all(locator)
         how = locator.keys[0].to_sym
-        what = locator[how]
+        what = prepare_locator(how, locator[how])
 
         begin
           appium.find_elements(how, what)
@@ -58,6 +57,11 @@ module Quto
         find(locator).click
       end
 
+      def scroll_to(locator)
+        id = find(locator).ref
+        appium.execute_script("mobile: scroll", {direction: 'down', element: id}) # will be deprecated soon
+      end
+
       def long_tap(locator)
         # TODO: implement long tap
       end
@@ -73,6 +77,10 @@ module Quto
 
       def name(locator)
         find(locator).name
+      end
+
+      def query_value query
+
       end
 
       def start

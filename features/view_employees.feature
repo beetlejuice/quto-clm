@@ -1,4 +1,4 @@
-@run @rm
+@employees @rm
 Feature: View Employees
 
   Scenario: Opening Employees screen

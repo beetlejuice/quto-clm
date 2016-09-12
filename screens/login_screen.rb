@@ -1,5 +1,3 @@
-require 'quto'
-
 class LoginScreen
   include Quto
 

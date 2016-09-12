@@ -1,7 +1,5 @@
-require 'quto'
-
 class AuthorizationRequestScreen
-  include 'quto'
+  include Quto
 
   button('allow_button', :xpath => "//UIAButton[@label='Разрешить']")
   button('deny_button', :xpath => "//UIAButton[@label='Отклонить']")

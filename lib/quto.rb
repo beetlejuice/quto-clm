@@ -1,19 +1,18 @@
+require 'quto/dynamic_locators'
 require 'quto/accessors/accessors'
 require 'quto/accessors/view'
-# require 'quto/accessors/table'
-# require 'quto/accessors/table_cell'
-# require 'quto/dynamic_locators'
+require 'quto/accessors/table'
+require 'quto/accessors/table_cell'
 require 'quto/navigation'
 require 'quto/helper'
 require 'quto/waiter'
-require 'quto/base_screen'
-require 'quto/base_section'
 
 module Quto
 
   def self.included(cls)
     cls.extend(Quto::Accessors)
     cls.include(Quto::Helper)
+    cls.include(Quto::DynamicLocators)
   end
 
   def find(locator)

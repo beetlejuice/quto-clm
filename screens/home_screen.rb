@@ -1,7 +1,11 @@
-require 'quto'
-
 class HomeScreen < BaseScreen
-  include Quto
+  def self.profiled?
+    true
+  end
+
+  def title_locator
+    {:uiautomation => ".staticTexts().firstWithPredicate(\"name CONTAINS 'Версия'\")"}
+  end
 
   def navigate_to_chapter chapter
     click_method = chapter.downcase + '_button_click'

@@ -3,16 +3,27 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '../../', 'lib'))
 require 'quto'
 require 'appium_lib'
 require 'rspec'
-require 'require_all'
 require 'quto/driver_designer'
 
 require_relative 'custom_data'
 
 World(CustomData)
 World(Quto::Navigation)
-World(Quto)
+# World(Quto)
 
-require_rel '/screens'
+require_relative '../../screens/base_screen'
+require_relative '../../screens/base_section'
+require_relative '../../screens/authorization_request_screen'
+require_relative '../../screens/contacts_sections/filters_popover'
+require_relative '../../screens/general_sections/tab_bar'
+require_relative '../../screens/contacts_screen'
+require_relative '../../screens/home_screen'
+require_relative '../../screens/login_screen'
+require_relative '../../screens/medical_visit_screen'
+require_relative '../../screens/organizations_sections/organization_type_popover'
+require_relative '../../screens/organizations_screen'
+require_relative '../../screens/pharmacy_visit_screen'
+require_relative '../../screens/visits_screen'
 
 def driver
   $quto

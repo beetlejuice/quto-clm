@@ -1,6 +1,5 @@
 module Quto
   module Accessors
-
     def view(name, locator)
       define_method("#{name}") do
         Quto::Accessors::View.new(locator)
@@ -29,13 +28,13 @@ module Quto
 
     # TODO: Add separate child class
     def alert(name, locator)
-      define_method("#{name}_view") do
+      define_method("#{name}") do
         Quto::Accessors::View.new(locator)
       end
     end
 
     def table(name, locator)
-      define_method("#{name}_view") do
+      define_method("#{name}") do
         Quto::Accessors::Table.new(locator)
       end
     end

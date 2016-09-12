@@ -1,3 +1,4 @@
+@view_visits
 Feature: View visits
 
   Scenario: Opening Visits screen
