@@ -1,11 +1,11 @@
 # require_relative 'organizations_sections/organization_type_popover'
 # require_relative 'general_sections/tab_bar'
 
-class OrganizationsScreen < BaseScreen
+class OrganizationsScreen < NavigatableScreen
   # Permanent elements
-  ORGANIZATIONS_TABLE_LOCATOR = {:uiautomation => ".tableViews()[0]"}
-  ORGANIZATIONS_FILTER_BUTTON_LOCATOR = {:uiautomation => ".navigationBar().buttons().firstWithPredicate(\"name CONTAINS '▼'\")"}
-  MENU_BUTTON_LOCATOR = {:uiautomation => ".navigationBar().buttons()['Меню']"}
+  ORGANIZATIONS_TABLE_LOCATOR = {:uiautomation => ".mainWindow().tableViews()[0]"}
+  ORGANIZATIONS_FILTER_BUTTON_LOCATOR = {:uiautomation => ".mainWindow().navigationBar().buttons().firstWithPredicate(\"name CONTAINS '▼'\")"}
+  MENU_BUTTON_LOCATOR = {:uiautomation => ".mainWindow().navigationBar().buttons()['Меню']"}
 
   # Appearing elements
   FILTER_LIST_LOCATOR = ""
@@ -35,7 +35,7 @@ class OrganizationsScreen < BaseScreen
   def select_filter filter_name
     # TODO: refactor
     organizations_filter_button_click
-    table_element(:uiautomation => ".popovers()[0].tables()[0]").select_cell_by_label(filter_name)
+    table_element(:uiautomation => ".mainWindow().popovers()[0].tables()[0]").select_cell_by_label(filter_name)
   end
 
   def pick_menu_option option

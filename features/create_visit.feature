@@ -15,4 +15,4 @@ Feature: Create visit
 #  Scenario: Create medical visit
 #    When I select "Все врачи" filter
 #    When I create a visit to any contact
-#    Then I should see "MedicalVisit" screen
+#    Then I should see MedicalVisit screen

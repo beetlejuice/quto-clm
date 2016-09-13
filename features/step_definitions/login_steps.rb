@@ -2,8 +2,9 @@ def user(profile)
   users[profile]
 end
 
-When(/^I login with $profile_name user/) do |profile_name|
+When "I login with $profile_name user" do |profile_name|
   on(LoginScreen).perform_login_with user(profile_name)
+  on(AuthorizationRequestScreen).allow_access
 end
 
 And(/^I allow authorization access$/) do

@@ -1,8 +1,8 @@
-class FiltersPopover < BaseSection
+class FiltersPopover < GenericSection
   FILTERS_TABLE_LOCATOR = '.tableViews()[0]'
 
   def self.locator_string
-    '.popovers()[0]'
+    '.mainWindow().popovers()[0]'
   end
 
   table('filters_table', :uiautomation => locator_string + FILTERS_TABLE_LOCATOR)

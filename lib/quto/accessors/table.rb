@@ -5,7 +5,7 @@ module Quto
         table_cells[idx]
       end
 
-      # TODO: change to tap_cell with quto identification of parameter type
+      # TODO: change to tap_cell with auto identification of parameter type
       def tap_cell_by_label(label)
         tap_cell({kind: :by_label, value: label})
       end

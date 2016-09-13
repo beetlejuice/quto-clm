@@ -9,10 +9,11 @@ require_relative 'custom_data'
 
 World(CustomData)
 World(Quto::Navigation)
-# World(Quto)
+World(Quto)
 
-require_relative '../../screens/base_screen'
-require_relative '../../screens/base_section'
+require_relative '../../screens/generic_screen'
+require_relative '../../screens/navigatable_screen'
+require_relative '../../screens/generic_section'
 require_relative '../../screens/authorization_request_screen'
 require_relative '../../screens/contacts_sections/filters_popover'
 require_relative '../../screens/general_sections/tab_bar'

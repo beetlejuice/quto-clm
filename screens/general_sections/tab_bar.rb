@@ -1,5 +1,4 @@
-class TabBar < BaseSection
-  # p self.ancestors
+class TabBar < GenericSection
   button('calendar_button', :name => 'Календарь')
   button('visits_button', :name => 'Визиты')
   button('contacts_button', :name => 'Контакты')

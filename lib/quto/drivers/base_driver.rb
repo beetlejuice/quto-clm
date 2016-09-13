@@ -3,7 +3,9 @@ require 'selenium-webdriver'
 module Quto
   module Drivers
     class BaseDriver
-      UIAUTO_LOCATOR_PREFIX = 'UIATarget.localTarget().frontMostApp().mainWindow()'
+      UIAUTO_LOCATOR_PREFIX = 'UIATarget.localTarget().frontMostApp()'
+      # UIAUTO_INT_LOCATOR_PREFIX = 'UIATarget.localTarget().frontMostApp().mainWindow()'
+      # UIAUTO_EXT_LOCATOR_PREFIX = 'UIATarget.localTarget().frontMostApp()'
 
       # TODO: why do I need this?
       attr_reader :config
@@ -80,7 +82,6 @@ module Quto
       end
 
       def query_value query
-
       end
 
       def start

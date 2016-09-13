@@ -1,4 +1,4 @@
-Given(/^I am on $screen_name screen$/) do |screen_name|
+Given "I am on $screen_name screen" do |screen_name|
   step "Then I should see #{screen_name} screen"
 end
 
@@ -10,7 +10,7 @@ When "I open $chapter_name chapter" do |chapter_name|
   on(HomeScreen).navigate_to_chapter(chapter_name)
 end
 
-When(/^I switch to $chapter_name chapter from Tabs/) do |chapter_name|
+When "I switch to $chapter_name chapter from Tabs" do |chapter_name|
   pending
 end
 

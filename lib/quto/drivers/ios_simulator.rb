@@ -19,7 +19,8 @@ module Quto
             locationServicesAuthorized: true,
             bundleId: @config['bundle_id'],
             noReset: true,
-            fullReset: @is_clean
+            fullReset: @is_clean,
+            autoLaunch: false
           }
         }
       end

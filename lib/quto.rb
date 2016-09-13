@@ -62,4 +62,9 @@ module Quto
     wait = Quto::Waiter.new(:timeout => timeout)
     wait.until(expectation){ view.send(action) }
   end
+
+  def wait_true(timeout = 5, &block)
+    wait = Quto::Waiter.new(:timeout => timeout)
+    wait.until(&block)
+  end
 end

@@ -1,8 +1,8 @@
-class ContactsScreen < BaseScreen
+class ContactsScreen < NavigatableScreen
   # Permanent elements
-  CONTACTS_TABLE_LOCATOR = {:uiautomation => '.tableViews()[0]'}
-  CONTACTS_FILTER_BUTTON_LOCATOR = {:uiautomation => ".navigationBar().buttons().firstWithPredicate(\"name CONTAINS '▼'\")"}
-  MENU_BUTTON_LOCATOR = {:uiautomation => ".navigationBar().buttons()['Меню']"}
+  CONTACTS_TABLE_LOCATOR = {:uiautomation => '.mainWindow().tableViews()[0]'}
+  CONTACTS_FILTER_BUTTON_LOCATOR = {:uiautomation => ".mainWindow().navigationBar().buttons().firstWithPredicate(\"name CONTAINS '▼'\")"}
+  MENU_BUTTON_LOCATOR = {:uiautomation => ".mainWindow().navigationBar().buttons()['Меню']"}
 
   # Appearing elements
 
