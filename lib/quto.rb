@@ -4,14 +4,12 @@ require 'quto/accessors/view'
 require 'quto/accessors/table'
 require 'quto/accessors/table_cell'
 require 'quto/navigation'
-require 'quto/helper'
 require 'quto/waiter'
 
 module Quto
 
   def self.included(cls)
     cls.extend(Quto::Accessors)
-    cls.include(Quto::Helper)
     cls.include(Quto::DynamicLocators)
   end
 
@@ -50,11 +48,12 @@ module Quto
     displayed_after_wait?(view, timeout)
   end
 
-  # TODO: not sure if need this
+  # TODO: not sure if need this - better handle implicit wait on element find
   def view_after_wait(view, condition, timeout = 5)
     view if wait_until_condition(view, condition, timeout)
   end
 
+  # TODO: looks overcomplicated, needs refactoring
   def wait_until_condition(view, condition = {}, timeout)
     action = condition[:action]
     expectation = condition.fetch(:expectation, true)
