@@ -11,16 +11,11 @@ module Quto
       @interval = opts.fetch(:interval, DEFAULT_INTERVAL)
     end
 
-    def until(exp_result = nil, &block)
+    def until(&block)
       time = Time.now + timeout
       while Time.now <= time do
-        act_result = block.call # block is obligatory here because of comparison
-        if exp_result.nil?
-          return true if act_result
-        else
-          return true if act_result == exp_result
-        end
-        # return true if act_result == exp_result
+        act_result = block.call
+        return true if act_result
         sleep(interval)
       end
       false

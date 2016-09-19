@@ -36,45 +36,31 @@ module Quto
     _find_with_wait(locator).click
   end
 
-  def exists_after_wait?(view, timeout = 5)
-    wait_until_condition(view, {action: :exists?}, timeout)
+  def exists_after_wait?(view)
+    wait_true { view.exists? }
   end
 
-  def enabled_after_wait?(view, timeout = 5)
-    wait_until_condition(view, {action: :enabled?}, timeout)
+  def enabled_after_wait?(view)
+    wait_true { view.enabled? }
   end
 
-  def displayed_after_wait?(view, timeout = 5)
-    wait_until_condition(view, {action: :displayed?}, timeout)
+  def displayed_after_wait?(view)
+    wait_true { view.displayed? }
   end
 
-  def exists_locator_after_wait?(locator, timeout = 5)
+  def exists_locator_after_wait?(locator)
     view = Quto::Accessors::View.new(locator)
-    exists_after_wait?(view, timeout)
+    exists_after_wait?(view)
   end
 
-  def enabled_locator_after_wait?(locator, timeout = 5)
+  def enabled_locator_after_wait?(locator)
     view = Quto::Accessors::View.new(locator)
-    enabled_after_wait?(view, timeout)
+    enabled_after_wait?(view)
   end
 
-  def displayed_locator_after_wait?(locator, timeout = 5)
+  def displayed_locator_after_wait?(locator)
     view = Quto::Accessors::View.new(locator)
-    displayed_after_wait?(view, timeout)
-  end
-
-  # TODO: not sure if need this - better handle implicit wait on element find
-  def view_after_wait(view, condition, timeout = 5)
-    view if wait_until_condition(view, condition, timeout)
-  end
-
-  # TODO: looks overcomplicated, needs refactoring
-  def wait_until_condition(view, condition = {}, timeout)
-    action = condition[:action]
-    expectation = condition.fetch(:expectation, true)
-
-    wait = Quto::Waiter.new(:timeout => timeout)
-    wait.until(expectation){ view.send(action) }
+    displayed_after_wait?(view)
   end
 
   def wait_true(timeout = WAIT_TIMEOUT, &block)
