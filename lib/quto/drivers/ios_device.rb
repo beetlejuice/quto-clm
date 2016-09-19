@@ -8,13 +8,16 @@ module Quto
         @config = config
       end
 
-      def caps
-        {app: @config['phys_app_path'],
-         deviceName: @config['device'],
-         platformName: @config['platform'],
-         platformVersion: @config['version'],
-         udid: @config['udid'],
-         autoAcceptAlerts: true}
+      def desired_caps
+        {
+          caps: {
+            deviceName: @config['device'],
+            platformName: @config['platform'],
+            platformVersion: @config['version'],
+            udid: @config['udid'],
+            autoAcceptAlerts: true
+          }
+        }
       end
     end
   end

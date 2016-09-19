@@ -58,7 +58,7 @@ module Quto
       end
 
       def get_button_on_cell_locator(cell_locator_settings, button_label)
-        button_locator_string = cell_locator_string(cell_locator_settings) + ".buttons().firstWithPredicate(\"name == '#{button_label}'\")"
+        button_locator_string = cell_locator_string(cell_locator_settings) + ".buttons()[\"#{button_label}\"]"
         {:uiautomation => button_locator_string}
       end
 

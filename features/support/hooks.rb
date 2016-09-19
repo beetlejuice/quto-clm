@@ -11,6 +11,7 @@ Before do |scenario|
 
   prepare_driver(is_clean)
   setup_user_with_profile(feature_profile) if (is_profile_changed || not_logged_in?)
+  prepare_app_for_tests
 end
 
 After do
@@ -23,14 +24,6 @@ def profile_from_tags(tags)
   (tags & profiles).first || 'mr'
 end
 
-def not_logged_in?
-  wait_true(timeout = 3){ login_screen_on? }
-end
-
-def login_screen_on?
-  !driver.find(:uiautomation => ".mainWindow().navigationBars().firstWithPredicate(\"name CONTAINS 'Log In'\")").nil?
-end
-
 def prepare_driver(is_clean)
   $quto = Quto::DriverDesigner.create_driver(is_clean)
   $quto.start
@@ -41,6 +34,24 @@ def setup_user_with_profile(profile)
   $current_profile = profile
 end
 
+def prepare_app_for_tests
+  dismiss_sync_notification
+end
+
 def login_with_profile(profile)
   steps %{When I login with #{profile} user}
+end
+
+def not_logged_in?
+  wait_true(timeout = 3){ login_screen_on? }
+  # or
+  # !_find_with_wait(:uiautomation => ".mainWindow().navigationBars().firstWithPredicate(\"name CONTAINS 'Log In'\")").nil?
+end
+
+def login_screen_on?
+  !driver.find(:uiautomation => ".mainWindow().navigationBars().firstWithPredicate(\"name CONTAINS 'Log In'\")").nil?
+end
+
+def dismiss_sync_notification
+  _click_with_wait(:uiautomation => ".alert().buttons()[\"Отложить\"]")
 end

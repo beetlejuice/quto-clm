@@ -12,7 +12,6 @@ module Quto
       def desired_caps
         {
           caps: {
-            app: @config['sim_app_path'],
             deviceName: @config['device'],
             platformName: @config['platform'],
             platformVersion: @config['version'],

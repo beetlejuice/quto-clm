@@ -8,6 +8,8 @@ require 'quto/waiter'
 
 module Quto
 
+  WAIT_TIMEOUT = 5
+
   def self.included(cls)
     cls.extend(Quto::Accessors)
     cls.include(Quto::DynamicLocators)
@@ -19,6 +21,19 @@ module Quto
 
   def find_all(locator)
     driver.find_all(locator)
+  end
+
+  def _find_with_wait(locator)
+    el = nil
+    wait_true do
+      el = driver.find(locator)
+      !el.nil?
+    end
+    el
+  end
+
+  def _click_with_wait(locator)
+    _find_with_wait(locator).click
   end
 
   def exists_after_wait?(view, timeout = 5)
@@ -62,7 +77,7 @@ module Quto
     wait.until(expectation){ view.send(action) }
   end
 
-  def wait_true(timeout = 5, &block)
+  def wait_true(timeout = WAIT_TIMEOUT, &block)
     wait = Quto::Waiter.new(:timeout => timeout)
     wait.until(&block)
   end

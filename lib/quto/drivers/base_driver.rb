@@ -10,8 +10,6 @@ module Quto
       # TODO: why do I need this?
       attr_reader :config
 
-      # def desired_caps; end
-
       def find(locator)
         how = locator.keys[0].to_sym
         what = prepare_locator(how, locator[how])
