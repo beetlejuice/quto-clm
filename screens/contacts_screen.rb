@@ -25,6 +25,11 @@ class ContactsScreen < NavigatableScreen
     contacts_table.tap_button_on_cell_by_index(random_cell_index, 'Создать')
   end
 
+  def open_random_contact
+    random_cell_index = rand(contacts_table.count)
+    contacts_table.tap_cell_by_index(random_cell_index)
+  end
+
   def get_contact_name(contact_cell_data)
     # TODO: implement or remove
   end

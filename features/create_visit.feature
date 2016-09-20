@@ -1,4 +1,4 @@
-@for_test @mr
+#@for_test @mr
 Feature: Create visit
   In order to perform activities
   As a MR user
@@ -9,7 +9,7 @@ Feature: Create visit
 
   Scenario: Create pharmacy visit
     When I select "Все фармацевты" filter
-    When I create a visit to any contact
+    And I create a visit to a contact
     Then I should see PharmacyVisit screen
 
 #  Scenario: Create medical visit

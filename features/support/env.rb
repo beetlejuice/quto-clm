@@ -1,4 +1,5 @@
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '../../', 'lib'))
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '../../', 'screens'))
 
 require 'quto'
 require 'appium_lib'
@@ -11,20 +12,21 @@ World(CustomData)
 World(Quto::Navigation)
 World(Quto)
 
-require_relative '../../screens/generic_screen'
-require_relative '../../screens/navigatable_screen'
-require_relative '../../screens/generic_section'
-require_relative '../../screens/authorization_request_screen'
-require_relative '../../screens/contacts_sections/filters_popover'
-require_relative '../../screens/general_sections/tab_bar'
-require_relative '../../screens/contacts_screen'
-require_relative '../../screens/home_screen'
-require_relative '../../screens/login_screen'
-require_relative '../../screens/medical_visit_screen'
-require_relative '../../screens/organizations_sections/organization_type_popover'
-require_relative '../../screens/organizations_screen'
-require_relative '../../screens/pharmacy_visit_screen'
-require_relative '../../screens/visits_screen'
+require '../../screens/generic_screen'
+require '../../screens/navigatable_screen'
+require '../../screens/generic_section'
+require '../../screens/authorization_request_screen'
+require '../../screens/contacts_sections/filters_popover'
+require '../../screens/general_sections/tab_bar'
+require '../../screens/contacts_screen'
+require '../../screens/contact_screen'
+require '../../screens/home_screen'
+require '../../screens/login_screen'
+require '../../screens/medical_visit_screen'
+require '../../screens/organizations_sections/organization_type_popover'
+require '../../screens/organizations_screen'
+require '../../screens/pharmacy_visit_screen'
+require '../../screens/visits_screen'
 
 def driver
   $quto
