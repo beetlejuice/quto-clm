@@ -2,7 +2,6 @@ Before do |scenario|
 
   tags = scenario.source_tag_names
 
-  # $current_profile = nil # depends on how to start tests - with pre-logined or not
   $current_profile = 'mr'
   feature_profile = profile_from_tags(tags)
 
@@ -36,6 +35,7 @@ end
 
 def prepare_app_for_tests
   dismiss_sync_notification
+  wait_for_sync
 end
 
 def login_with_profile(profile)
@@ -43,15 +43,22 @@ def login_with_profile(profile)
 end
 
 def not_logged_in?
-  wait_true(timeout = 3){ login_screen_on? }
-  # or
-  # !_find_with_wait(:uiautomation => ".mainWindow().navigationBars().firstWithPredicate(\"name CONTAINS 'Log In'\")").nil?
+  login_screen_on?
 end
 
 def login_screen_on?
-  !driver.find(:uiautomation => ".mainWindow().navigationBars().firstWithPredicate(\"name CONTAINS 'Log In'\")").nil?
+  login_screen_bar_locator = {:uiautomation => ".mainWindow().navigationBars().firstWithPredicate(\"name CONTAINS 'Log In'\")"}
+  displayed_locator_after_wait?(login_screen_bar_locator)
 end
 
 def dismiss_sync_notification
-  _click_with_wait(:uiautomation => ".alert().buttons()[\"Отложить\"]")
+  alert_button = _find_with_wait(:uiautomation => ".alert().buttons()[\"Отложить\"]")
+  alert_button.click unless alert_button.nil?
+end
+
+def wait_for_sync
+  sync_progress_indicator = _find_with_wait(:uiautomation => ".mainWindow().progressIndicators()[0]")
+  if !!sync_progress_indicator
+    hidden_after_wait?(sync_progress_indicator, 600)
+  end
 end

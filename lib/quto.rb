@@ -36,31 +36,40 @@ module Quto
     _find_with_wait(locator).click
   end
 
-  def exists_after_wait?(view)
-    wait_true { view.exists? }
+  def exists_after_wait?(view, timeout = WAIT_TIMEOUT)
+    wait_true(timeout) { view.exists? }
   end
 
-  def enabled_after_wait?(view)
-    wait_true { view.enabled? }
+  def enabled_after_wait?(view, timeout = WAIT_TIMEOUT)
+    wait_true(timeout) { view.enabled? }
   end
 
-  def displayed_after_wait?(view)
-    wait_true { view.displayed? }
+  def displayed_after_wait?(view, timeout = WAIT_TIMEOUT)
+    wait_true(timeout) { view.displayed? }
   end
 
-  def exists_locator_after_wait?(locator)
+  def hidden_after_wait?(view, timeout = WAIT_TIMEOUT)
+    wait_true(timeout) { !view.displayed? }
+  end
+
+  def exists_locator_after_wait?(locator, timeout = WAIT_TIMEOUT)
     view = Quto::Accessors::View.new(locator)
-    exists_after_wait?(view)
+    exists_after_wait?(view, timeout)
   end
 
-  def enabled_locator_after_wait?(locator)
+  def enabled_locator_after_wait?(locator, timeout = WAIT_TIMEOUT)
     view = Quto::Accessors::View.new(locator)
-    enabled_after_wait?(view)
+    enabled_after_wait?(view, timeout)
   end
 
-  def displayed_locator_after_wait?(locator)
+  def displayed_locator_after_wait?(locator, timeout = WAIT_TIMEOUT)
     view = Quto::Accessors::View.new(locator)
-    displayed_after_wait?(view)
+    displayed_after_wait?(view, timeout)
+  end
+
+  def hidden_locator_after_wait?(locator, timeout = WAIT_TIMEOUT)
+    view = Quto::Accessors::View.new(locator)
+    hidden_after_wait?(view, timeout)
   end
 
   def wait_true(timeout = WAIT_TIMEOUT, &block)

@@ -27,7 +27,7 @@ module Quto
       end
 
       def count
-        # now only visible, do I need all?
+        # now using only visible, do I need all cells?
         cells_locator_string = locator_string + '.visibleCells()'
         driver.find_all(:uiautomation => cells_locator_string).size
       end
