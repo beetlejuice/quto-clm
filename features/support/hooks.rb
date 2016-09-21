@@ -1,20 +1,23 @@
 Before do |scenario|
-
   tags = scenario.source_tag_names
 
-  $current_profile = 'mr'
-  feature_profile = profile_from_tags(tags)
+  $current_profile = 'mr' # TODO: it is set before each scenario - should be redesigned
+  $feature_profile = profile_from_tags(tags)
 
-  is_profile_changed = $current_profile != feature_profile
-  is_clean = $current_profile && is_profile_changed
-
-  prepare_driver(is_clean)
-  setup_user_with_profile(feature_profile) if (is_profile_changed || not_logged_in?)
+  prepare_driver(is_clean?)
   prepare_app_for_tests
 end
 
 After do
   $quto.quit
+end
+
+def is_profile_changed?
+  $current_profile != $feature_profile
+end
+
+def is_clean?
+  $current_profile && is_profile_changed?
 end
 
 def profile_from_tags(tags)
@@ -25,17 +28,23 @@ end
 
 def prepare_driver(is_clean)
   $quto = Quto::DriverDesigner.create_driver(is_clean)
+  if is_clean
+    $logged_in = false
+    $synchronized = false
+  end
   $quto.start
-end
-
-def setup_user_with_profile(profile)
-  login_with_profile(profile)
-  $current_profile = profile
 end
 
 def prepare_app_for_tests
   dismiss_sync_notification
-  wait_for_sync
+  setup_user_with_profile($feature_profile) if (is_profile_changed? || not_logged_in?)
+  wait_for_sync unless $synchronized
+end
+
+def setup_user_with_profile(profile)
+  login_with_profile(profile)
+  $logged_in = true
+  $current_profile = profile
 end
 
 def login_with_profile(profile)
@@ -43,10 +52,17 @@ def login_with_profile(profile)
 end
 
 def not_logged_in?
-  login_screen_on?
+  return false if $logged_in
+  # login_screen_appeared? or !($logged_in = true)
+  if login_screen_appeared?
+    return true
+  else
+    $logged_in = true
+    return false
+  end
 end
 
-def login_screen_on?
+def login_screen_appeared?
   login_screen_bar_locator = {:uiautomation => ".mainWindow().navigationBars().firstWithPredicate(\"name CONTAINS 'Log In'\")"}
   displayed_locator_after_wait?(login_screen_bar_locator)
 end
@@ -60,5 +76,6 @@ def wait_for_sync
   sync_progress_indicator = _find_with_wait(:uiautomation => ".mainWindow().progressIndicators()[0]")
   if !!sync_progress_indicator
     hidden_after_wait?(sync_progress_indicator, 600)
+    $synchronized = true
   end
 end

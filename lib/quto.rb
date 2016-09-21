@@ -8,7 +8,7 @@ require 'quto/waiter'
 
 module Quto
 
-  WAIT_TIMEOUT = 5
+  WAIT_TIMEOUT = 3
 
   def self.included(cls)
     cls.extend(Quto::Accessors)

@@ -12,21 +12,21 @@ World(CustomData)
 World(Quto::Navigation)
 World(Quto)
 
-require '../../screens/generic_screen'
-require '../../screens/navigatable_screen'
-require '../../screens/generic_section'
-require '../../screens/authorization_request_screen'
-require '../../screens/contacts_sections/filters_popover'
-require '../../screens/general_sections/tab_bar'
-require '../../screens/contacts_screen'
-require '../../screens/contact_screen'
-require '../../screens/home_screen'
-require '../../screens/login_screen'
-require '../../screens/medical_visit_screen'
-require '../../screens/organizations_sections/organization_type_popover'
-require '../../screens/organizations_screen'
-require '../../screens/pharmacy_visit_screen'
-require '../../screens/visits_screen'
+require 'generic_screen'
+require 'navigatable_screen'
+require 'generic_section'
+require 'authorization_request_screen'
+require 'contacts_sections/filters_popover'
+require 'general_sections/tab_bar'
+require 'contacts_screen'
+require 'contact_screen'
+require 'home_screen'
+require 'login_screen'
+require 'medical_visit_screen'
+require 'organizations_sections/organization_type_popover'
+require 'organizations_screen'
+require 'pharmacy_visit_screen'
+require 'visits_screen'
 
 def driver
   $quto
