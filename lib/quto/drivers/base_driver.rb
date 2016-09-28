@@ -28,7 +28,7 @@ module Quto
 
         begin
           appium.find_elements(how, what)
-        rescue Selenium::WebDriver::Error::NoSuchElementError
+        rescue Selenium::WebDriver::Error::NoSuchElementError # TODO: is it correct exception for _elements method?
           return nil
         end
       end
@@ -59,7 +59,7 @@ module Quto
 
       def scroll_to(locator)
         id = find(locator).ref
-        appium.execute_script("mobile: scroll", {direction: 'down', element: id}) # will be deprecated soon
+        appium.execute_script("mobile: scroll", {direction: 'down', element: id}) # TODO: will be deprecated soon
       end
 
       def long_tap(locator)

@@ -36,9 +36,10 @@ def prepare_driver(is_clean)
 end
 
 def prepare_app_for_tests
-  dismiss_sync_notification
   setup_user_with_profile($feature_profile) if (is_profile_changed? || not_logged_in?)
   wait_for_sync unless $synchronized
+  $synchronized = true # first sync should be passed if we got here
+  dismiss_sync_notification
 end
 
 def setup_user_with_profile(profile)
@@ -53,7 +54,6 @@ end
 
 def not_logged_in?
   return false if $logged_in
-  # login_screen_appeared? or !($logged_in = true)
   if login_screen_appeared?
     return true
   else
@@ -68,12 +68,12 @@ def login_screen_appeared?
 end
 
 def dismiss_sync_notification
-  alert_button = _find_with_wait(:uiautomation => ".alert().buttons()[\"Отложить\"]")
+  alert_button = find(:uiautomation => ".alert().buttons()[\"Отложить\"]")
   alert_button.click unless alert_button.nil?
 end
 
 def wait_for_sync
-  sync_progress_indicator = _find_with_wait(:uiautomation => ".mainWindow().progressIndicators()[0]")
+  sync_progress_indicator = find(:uiautomation => ".mainWindow().progressIndicators()[0]")
   if !!sync_progress_indicator
     hidden_after_wait?(sync_progress_indicator, 600)
     $synchronized = true

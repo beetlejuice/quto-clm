@@ -4,7 +4,8 @@ class NavigatableScreen < GenericScreen
   attr_accessor :title
 
   def active?
-    label_element(title_locator).displayed?
+    displayed_after_wait?(title_locator)
+    # label_element(title_locator).displayed?
   end
 
   def title_locator

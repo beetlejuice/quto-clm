@@ -24,6 +24,7 @@ module Quto
 
       def table_cells
         # return array of TableCells
+        # TODO: implement
       end
 
       def count
@@ -34,19 +35,22 @@ module Quto
 
       private
 
-      def tap_cell(locator_settings)
-        cell_locator = get_cell_locator locator_settings
-        cell = Quto::Accessors::TableCell.new(cell_locator)
-        scroll_to_cell(cell) unless cell.displayed?
+      def tap_cell(cell_locator_settings)
+        cell = prepare_cell(cell_locator_settings)
+        scroll_to_cell(cell) unless cell.displayed? # TODO: visibility check produces another request to server
         cell.click
       end
 
       def tap_button_on_cell(cell_locator_settings, button_label)
-        cell_locator = get_cell_locator cell_locator_settings
-        cell = Quto::Accessors::TableCell.new(cell_locator)
+        cell = prepare_cell(cell_locator_settings)
         scroll_to_cell(cell) unless cell.displayed?
         button_cell_locator = get_button_on_cell_locator(cell_locator_settings, button_label)
         Quto::Accessors::View.new(button_cell_locator).click
+      end
+
+      def prepare_cell(cell_locator_settings)
+        cell_locator = get_cell_locator(cell_locator_settings)
+        Quto::Accessors::TableCell.new(cell_locator)
       end
 
       def scroll_to_cell(cell)
@@ -54,19 +58,15 @@ module Quto
       end
 
       def get_cell_locator(locator_settings)
-        {:uiautomation => cell_locator_string(locator_settings)}
+        {:uiautomation => get_cell_locator_string(locator_settings)}
       end
 
       def get_button_on_cell_locator(cell_locator_settings, button_label)
-        button_locator_string = cell_locator_string(cell_locator_settings) + ".buttons()[\"#{button_label}\"]"
+        button_locator_string = get_cell_locator_string(cell_locator_settings) + ".buttons()[\"#{button_label}\"]"
         {:uiautomation => button_locator_string}
       end
 
-      def locator_string
-        locator[:uiautomation]
-      end
-
-      def cell_locator_string(locator_settings)
+      def get_cell_locator_string(locator_settings)
         variable_kind = locator_settings[:kind]
         variable_value = locator_settings[:value]
         case variable_kind
@@ -77,6 +77,10 @@ module Quto
           else
             raise "Unknown variable kind for cell locator: #{variable_kind}"
         end
+      end
+
+      def locator_string
+        locator[:uiautomation]
       end
     end
   end

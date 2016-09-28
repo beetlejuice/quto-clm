@@ -1,4 +1,4 @@
-#@for_test @mr
+@for_test @mr
 Feature: Create visit
   In order to perform activities
   As a MR user

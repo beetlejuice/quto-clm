@@ -16,14 +16,6 @@ module Quto
   end
 
   def find(locator)
-    driver.find(locator)
-  end
-
-  def find_all(locator)
-    driver.find_all(locator)
-  end
-
-  def _find_with_wait(locator)
     el = nil
     wait_true do
       el = driver.find(locator)
@@ -32,8 +24,17 @@ module Quto
     el
   end
 
-  def _click_with_wait(locator)
-    _find_with_wait(locator).click
+  def find_all(locator)
+    els = nil
+    wait_true do
+      els = driver.find_all(locator)
+      !el.nil?
+    end
+    els
+  end
+
+  def click(locator)
+    find(locator).click
   end
 
   def exists_after_wait?(view, timeout = WAIT_TIMEOUT)
